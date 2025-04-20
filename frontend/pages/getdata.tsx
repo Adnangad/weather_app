@@ -21,7 +21,7 @@ export const getForecast = async (city: string, units: string) => {
             const data = await res.json();
             return { data };
         } else {
-            return { data: { error: "Unable to fetch weather data" } };
+            return { data: { error: "Unable to fetch forecast" } };
         }
     } catch (error) {
         return { data: { error: "Unable to fetch data from the server" } };

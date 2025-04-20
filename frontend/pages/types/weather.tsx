@@ -1,4 +1,4 @@
-type WeatherData = {
+export type WeatherData = {
     weather: {
         main: string;
         description: string;
@@ -15,10 +15,13 @@ type WeatherData = {
     name: string;
 };
 
-type ErrorData = {
+export type ErrorData = {
     error: string;
 };
 
-export type Props = {
-    data: WeatherData | ErrorData;
+export type Forecast = {
+    [date: string]: {
+        average_temp: number;
+        icon: string;
+    };
 };
