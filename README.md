@@ -42,7 +42,7 @@ Returns weather data in a structured format (JSON)
 Provides weather data for current weather and forecasts for the next 3 days
 
 # Demo
-You can view the live demo of this weather app here: [Demo URL]
+You can view the live demo of this weather app here: https://weather-app-r58e-mu.vercel.app/
 
 ## Contributing
 Fork this repository.
