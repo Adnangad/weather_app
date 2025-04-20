@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getTodaysWeather, getForecast } from "./getdata";
 import { WeatherData, Forecast, ErrorData } from "./types/weather";
 import { useRouter } from "next/router";
-import { error } from "console";
+import { getFormattedDate } from "./dateFormat";
 
 interface PageProps {
   data: WeatherData | ErrorData;
@@ -28,6 +28,7 @@ const HomePage: React.FC<PageProps> = ({ data, forecastdata }) => {
   const [isMetric, setMetric] = useState(true);
   const [city, setCity] = useState(router.query.city || "nairobi");
   const [units, setUnits] = useState(router.query.units || "metric");
+  console.log(Date.now());
 
   const handleSearch = () => {
     router.push(`/?city=${city}&units=${units}`);
@@ -71,7 +72,8 @@ const HomePage: React.FC<PageProps> = ({ data, forecastdata }) => {
           <h3 className="text-xl text-center mt-2 font-bold">
             {data.weather[0].description}
           </h3>
-          <h3 className="text-xl text-center mt-40">{data.name}</h3>
+          <h3 className="text-xl text-center mt-30">{getFormattedDate()}</h3>
+          <h3 className="text-xl text-center mt-2">{data.name}</h3>
         </div>
         <div className="w-3/4 pl-6">
           <div className="flex items-center space-x-4 mb-6">
@@ -109,7 +111,7 @@ const HomePage: React.FC<PageProps> = ({ data, forecastdata }) => {
                   key={date}
                   className="border p-4 rounded-xl shadow-md text-center bg-gray-50 h-60"
                 >
-                  <h3 className="font-medium">{date}</h3>
+                  <h3 className="font-medium">{new Date(date).toLocaleDateString("en-US", { weekday: "long" })}</h3>
                   <img
                     src={`http://openweathermap.org/img/w/${forecast.icon}.png`}
                     alt="Forecast Icon"
@@ -128,6 +130,7 @@ const HomePage: React.FC<PageProps> = ({ data, forecastdata }) => {
             <div className="grid grid-cols-2 gap-4">
               <div className="border p-4 rounded-xl shadow-md text-center bg-gray-50 h-60">
                 <h3 className="font-bold">Wind Speed</h3>
+                <img src="/static/wind.jpg" alt="humidity icon" className="w-20 h-20 mx-auto mt-4"></img>
                 {isMetric ? (
                   <h2 className="text-2xl font-medium mt-8">{data.wind.speed} m/s</h2>
                 ): (
@@ -136,6 +139,7 @@ const HomePage: React.FC<PageProps> = ({ data, forecastdata }) => {
               </div>
               <div className="border p-4 rounded-xl shadow-md text-center bg-gray-50 h-60">
                 <h3 className="font-bold">Humidity</h3>
+                <img src="/static/humidity.jpg" alt="humidity icon" className="w-20 h-20 mx-auto mt-4"></img>
                 <h2 className="text-2xl font-medium mt-8">{data.main.humidity} %</h2>
               </div>
             </div>
