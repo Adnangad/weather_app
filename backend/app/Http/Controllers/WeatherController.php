@@ -82,8 +82,14 @@ class WeatherController extends Controller
             }
             $forecast = [];
             $count = 0;
+            $today = date('Y-m-d');
+
+            // retreives the average forecast  for 3 days
             foreach($dailyData as $date => $data) {
-                // we only retreive the average forecast  for 3 days
+                // if its the current date, skip it
+                if ($date === $today) {
+                    continue;
+                }
                 if ($count >= 3) break;
 
                 //gets the avg temp
