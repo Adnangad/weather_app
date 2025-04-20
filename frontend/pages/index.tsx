@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getTodaysWeather, getForecast } from "./getdata";
-import { WeatherData, Forecast, ErrorData } from "./types/weather";
+import { getTodaysWeather, getForecast } from "../utils/getdata";
+import { WeatherData, Forecast, ErrorData } from "../utils/types/weather";
 import { useRouter } from "next/router";
-import { getFormattedDate } from "./dateFormat";
+import { getFormattedDate } from "../utils/dateFormat";
 
 interface PageProps {
   data: WeatherData | ErrorData;
