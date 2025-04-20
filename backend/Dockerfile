@@ -17,12 +17,6 @@ COPY . .
 # Installs PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Laravel-specific setup
-RUN php artisan config:clear && \
-    php artisan route:clear && \
-    php artisan view:clear && \
-    php artisan key:generate
-
 
 # Expose port Laravel will run on
 EXPOSE 10000
