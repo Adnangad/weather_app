@@ -17,8 +17,6 @@ COPY . .
 # Installs PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Runs the Artisan commands to clear cache and optimize
-RUN php artisan config:clear && php artisan cache:clear && php artisan optimize
 
 # Expose port Laravel will run on
 EXPOSE 10000
