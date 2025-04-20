@@ -14,6 +14,8 @@ WORKDIR /var/www
 # Copies project files
 COPY . .
 
+RUN chmod -R 775 storage bootstrap/cache
+
 # Installs PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
